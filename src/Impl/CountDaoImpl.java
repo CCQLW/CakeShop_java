@@ -19,6 +19,7 @@ public class CountDaoImpl implements CountDao {
         String sql = "select * from count ";
         List<Count> list = null;
         try {
+
             //查询所有的集合
             list = queryRunner.query(DataSourceUtils.getConnection(), sql, new BeanListHandler<Count>(Count.class));
 //            for(int i=0;i<list.size();i++){
