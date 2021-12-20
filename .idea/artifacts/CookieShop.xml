@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="war" build-on-make="true" name="CookieShop">
+    <output-path>$PROJECT_DIR$/out/artifacts/CookieShop</output-path>
+    <root id="archive" name="CookieShop.war">
+      <element id="artifact" artifact-name="CookieShop:war exploded" />
+      <element id="dir-copy" path="$PROJECT_DIR$/web" />
+    </root>
+  </artifact>
+</component>
