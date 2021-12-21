@@ -3,19 +3,19 @@ package filter;
 
 import model.Count;
 import model.Goods;
-import org.apache.commons.dbutils.QueryRunner;
-import org.apache.commons.dbutils.handlers.BeanHandler;
-import service.CountService;
-import utils.DataSourceUtils;
-
-import javax.servlet.*;
-import javax.servlet.annotation.WebFilter;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.SQLException;
-
+//import org.apache.commons.dbutils.QueryRunner;
+//import org.apache.commons.dbutils.handlers.BeanHandler;
+//import service.CountService;
+//import utils.DataSourceUtils;
+//
+//import javax.servlet.*;
+//import javax.servlet.annotation.WebFilter;
+//import javax.servlet.http.HttpServletRequest;
+//import javax.servlet.http.HttpServletResponse;
+//import java.io.IOException;
+//import java.sql.Connection;
+//import java.sql.SQLException;
+//
 //@WebFilter(value = "/*")
 //public class CountFilter implements Filter {
 //    private ServletContext servletContext;
