@@ -85,6 +85,11 @@
 								</p>
 							</td>
 							<td><p>${order.datetime }</p></td>
+							<td>
+								<div>
+									<a href="#">评价</a>
+								</div>
+							</td>
 						</tr>
 
 					</c:forEach>
