@@ -33,8 +33,6 @@
         <h2>我的订单</h2>
 
         <table>
-
-            <%--            <c:forEach items="${orderList }" var="order">--%>
             <tr>
                 <td>要评价的商品</td>
                 <td>
@@ -55,7 +53,6 @@
                 </td>
                 <td>
                     <div>
-<%--                        <input type="text" class="form-control" placeholder="Text input">--%>
                         <textarea class="form-control" rows="3"></textarea>
                     </div>
                 </td>
@@ -68,8 +65,6 @@
                     </div>
                 </td>
             </tr>
-            <%--            </c:forEach>--%>
-
         </table>
 
     </div>

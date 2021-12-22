@@ -73,6 +73,12 @@
 					<div class="btn_form">
 						<a href="javascript:;" class="add-cart item_add" onclick="buy(${g.id})">加入购物车</a>
 					</div>
+					<p>
+						评价
+					</p>
+					<p>
+						<textarea id="rone" disabled="disabled" style="border:#e4b9b9;border-radius:5px;background-color:#bce8f1;width: 355px;height: 100px;padding: 10px;resize: none;">评价内容</textarea>
+					</p>
 				</div>
 				<div class="col-md-4 single-grid1">
 					<!-- <h2>商品分类</h2> -->
