@@ -22,7 +22,8 @@ public class UserLoginServlet extends HttpServlet {
             request.getRequestDispatcher("/user_login.jsp").forward(request, response);
         }else {
             request.getSession().setAttribute("user", user);
-            request.getRequestDispatcher("/user_center.jsp").forward(request, response);
+//            request.getRequestDispatcher("/user_center.jsp").forward(request, response);
+            request.getRequestDispatcher("/historical").forward(request, response);
         }
     }
 

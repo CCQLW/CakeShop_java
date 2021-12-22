@@ -10,8 +10,7 @@ function buy(goodid){
                location.reload();
             });
 		}
-		else if(data=="fail")
-		{
+		else if(data=="fail") {
             layer.msg("库存不足,请购买其他商品!", {time:800}, function(){
 
             });

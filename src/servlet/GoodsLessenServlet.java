@@ -1,6 +1,8 @@
 package servlet;
 
+import model.Cart;
 import model.Order;
+import service.CartService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +16,11 @@ public class GoodsLessenServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Order o = (Order) request.getSession().getAttribute("order");
         int goodsid = Integer.parseInt(request.getParameter("goodsid"));
+
+        CartService cartService=new CartService();
+        Cart cart= cartService.findCartByGoodID(goodsid);
+        cartService.delete(cart.getId());
+
         o.lessen(goodsid);
         response.getWriter().print("ok");
     }

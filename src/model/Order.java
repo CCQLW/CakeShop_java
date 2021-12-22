@@ -15,7 +15,9 @@ public class Order {
     private String address;
     private Date datetime;
     private User user;
+    //存储购物车内信息
     private Map<Integer,OrderItem> itemMap = new HashMap<Integer,OrderItem>();
+
     private List<OrderItem> itemList = new ArrayList<OrderItem>();
 
     public void setUsername(String username) {
