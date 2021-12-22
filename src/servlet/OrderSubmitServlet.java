@@ -15,6 +15,7 @@ public class OrderSubmitServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if(request.getSession().getAttribute("user")!=null) {
+            //跳转到确认支付界面
             request.getRequestDispatcher("/order_submit.jsp").forward(request, response);
         }else {
             request.setAttribute("failMsg", "请登录后，再提交订单！");

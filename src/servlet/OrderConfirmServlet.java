@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
-
+//付款成功之后的界面
 @WebServlet(name = "order_confirm",urlPatterns = "/order_confirm")
 public class OrderConfirmServlet extends HttpServlet {
     private OrderService oService = new OrderService();
