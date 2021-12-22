@@ -44,10 +44,11 @@
 					<th width="10%">ID</th>
 					<th width="10%">总价</th>
 					<th width="20%">商品详情</th>
-					<th width="30%">收货信息</th>
+					<th width="25%">收货信息</th>
 					<th width="10%">订单状态</th>
 					<th width="10%">支付方式</th>
 					<th width="10%">下单时间</th>
+					<th width="5%">评价</th>
 				</tr>
 
 					<c:forEach items="${orderList }" var="order">
@@ -87,7 +88,9 @@
 							<td><p>${order.datetime }</p></td>
 							<td>
 								<div>
-									<a href="#">评价</a>
+									<p>
+										<a href="/evaluation.jsp">评价</a>
+									</p>
 								</div>
 							</td>
 						</tr>
