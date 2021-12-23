@@ -55,9 +55,12 @@
                             <div>
                                     ${item.goodsName }(${item.price }) x ${item.amount }
                             </div>
-                            <div>
-                                <a class="btn btn-primary btn-xs" href="/evaluation_new?name=${item.goodsName }" role="button">评价</a>
-                            </div>
+                            <c:if test="${order.status!=1}">
+                                <div>
+                                    <a class="btn btn-primary btn-xs" href="/evaluation_new?name=${item.goodsName }" role="button">评价</a>
+                                </div>
+                            </c:if>
+
                             </p>
                         </c:forEach>
 
