@@ -21,8 +21,10 @@ public class OrderSubmitServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (request.getSession().getAttribute("user") != null) {
             User user = (User) request.getSession().getAttribute("user");
+
             MoneyService moneyService = new MoneyService();
             Money money = moneyService.getMoneyByUserId(user.getId());
+            //更新余额
             request.getSession().setAttribute("money", money);
             //跳转到确认支付界面
             request.getRequestDispatcher("/order_submit.jsp").forward(request, response);
