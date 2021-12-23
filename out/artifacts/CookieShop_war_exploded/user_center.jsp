@@ -48,6 +48,10 @@
 							<span>收货地址</span>
 							<input type="text" name="address" value="${user.address }" placeholder="请输入收货地址"> 
 						</div>
+						<div class="input">
+							<span>余额</span>
+							<input type="text" name="address" value="${money.balance }" placeholder="请输入收货地址">
+						</div>
 						<div class="register-but text-center">
 						   <input type="submit" value="提交">
 						</div>	

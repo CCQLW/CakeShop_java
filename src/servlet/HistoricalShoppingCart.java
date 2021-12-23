@@ -38,9 +38,9 @@ public class HistoricalShoppingCart extends HttpServlet {
         }
         request.getSession().setAttribute("order", order);
         //原本跳转到个人中心
-//        request.getRequestDispatcher("/user_center.jsp").forward(request, response);
+        request.getRequestDispatcher("/user_center.jsp").forward(request, response);
         //为测试方便改成跳转到购物车
-        request.getRequestDispatcher("/goods_cart.jsp").forward(request, response);
+//        request.getRequestDispatcher("/goods_cart.jsp").forward(request, response);
         //跳转到首页，目前错误
 //        request.getRequestDispatcher("/index").forward(request, response);
     }

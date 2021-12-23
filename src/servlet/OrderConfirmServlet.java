@@ -39,8 +39,14 @@ public class OrderConfirmServlet extends HttpServlet {
         if (money.getBalance() >= order.getTotal()) {
             //显示已付款
             request.setAttribute("msg", "订单支付成功！");
+            //user扣款
             money.setBalance(money.getBalance() - order.getTotal());
             moneyService.update(money);
+            //admin收入
+            Money admin=moneyService.getMoneyByUserId(1);
+            admin.setBalance(admin.getBalance()+order.getTotal());
+            moneyService.update(admin);
+
             order.setStatus(2);
         }else{
 //            isfail=true;
@@ -60,8 +66,8 @@ public class OrderConfirmServlet extends HttpServlet {
 
 //        request.setAttribute("msg", "订单支付成功！");
 
-        //删除在 Session 中的money
-        request.getSession().removeAttribute("money");
+        //更新在 Session 中的money
+        request.getSession().setAttribute("money",money);
 
         request.getRequestDispatcher("/order_success.jsp").forward(request, response);
     }

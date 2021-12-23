@@ -52,6 +52,12 @@ public class UserDao {
         return r.query(sql, new BeanHandler<User>(User.class),id);
     }
 
+    public User selectByUsername(String username) throws SQLException {
+        QueryRunner r = new QueryRunner(DataSourceUtils.getDataSource());
+        String sql = "select * from user where username=?";
+        return r.query(sql, new BeanHandler<User>(User.class),username);
+    }
+
     public void updateUserAddress(User user) throws SQLException {
         QueryRunner r = new QueryRunner(DataSourceUtils.getDataSource());
         String sql ="update user set name = ?,phone=?,address=? where id = ?";
