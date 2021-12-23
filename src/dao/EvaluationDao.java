@@ -14,8 +14,8 @@ import java.util.List;
 public class EvaluationDao {
     public void addEvaluation(Evaluation eval) throws SQLException {
         QueryRunner r = new QueryRunner(DataSourceUtils.getDataSource());
-        String sql = "insert into evaluation(gid,uid,eval,uname) values(?,?,?,?)";
-        r.update(sql,eval.getGid(),eval.getUid(),eval.getEval(),eval.getUname());
+        String sql = "insert into evaluation(gid,uid,eval,uname,date) values(?,?,?,?,?)";
+        r.update(sql,eval.getGid(),eval.getUid(),eval.getEval(),eval.getUname(),eval.getDate());
     }
     public Evaluation selectByUid(int uid) throws SQLException {
         QueryRunner r = new QueryRunner(DataSourceUtils.getDataSource());
@@ -34,7 +34,7 @@ public class EvaluationDao {
     }
     public List selectEvaluationList(int gid) throws SQLException {
         QueryRunner r = new QueryRunner(DataSourceUtils.getDataSource());
-        String sql = "select * from evaluation limit ?";
+        String sql = "select * from evaluation where gid=?";
         return r.query(sql, new BeanListHandler<Evaluation>(Evaluation.class), gid );
     }
 }
