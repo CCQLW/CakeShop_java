@@ -75,10 +75,12 @@
                     评价
                 </p>
                 <p>
-						<textarea id="rone" disabled="disabled"
-                                  style="border:#e4b9b9;border-radius:5px;background-color:#bce8f1;width: 355px;height: 100px;padding: 10px;resize: none;">
-
-						</textarea>
+                    <select multiple class="form-control"  style="border:#e4b9b9;border-radius:5px;background-color:#bce8f1;width: 355px;height: 100px;padding: 10px;resize: none;">
+                        <c:forEach items="${elist}" var="elist">
+                            <option>${elist.eval}</option>
+                            <option>----${elist.uname}</option>
+                        </c:forEach>
+                    </select>
                 </p>
             </div>
             <div class="col-md-4 single-grid1">

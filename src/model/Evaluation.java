@@ -5,6 +5,7 @@ public class Evaluation {
     private int gid;//商品id
     private int uid;//用户id
     private String eval;//评价内容
+    private String uname;//用户姓名
 
     public int getId() {return id;}
     public void setId(int id) {this.id=id;}
@@ -14,17 +15,21 @@ public class Evaluation {
     public void setUid(int uid) {this.uid=uid;}
     public String getEval() {return eval;}
     public void setEval(String eval) {this.eval=eval;}
-    public Evaluation(int id,int gid,int uid,String eval){
+    public String getUname(){return uname;}
+    public void setUname(String name){this.uname=name;}
+    public Evaluation(int id,int gid,int uid,String eval,String uname){
         super();
         this.id=id;
         this.uid=uid;
         this.gid=gid;
         this.eval=eval;
+        this.uname=uname;
     }
-    public Evaluation(int gid,int uid,String eval){
+    public Evaluation(int gid,int uid,String eval,String uname){
         this.gid=gid;
         this.uid=uid;
         this.eval=eval;
+        this.uname=uname;
     }
     public Evaluation(){super();}
 }

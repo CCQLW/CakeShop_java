@@ -40,6 +40,7 @@ public class EvaluationAddServlet extends HttpServlet{
         }
         List<Order> list = oService.selectAll(u.getId());
         eval.setUid(Integer.parseInt(request.getParameter("uid")));
+        eval.setUname(u.getName());
         if(EService.addEval(eval)) {
             request.setAttribute("msg", "评价成功！");
             request.setAttribute("orderList", list);

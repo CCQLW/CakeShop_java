@@ -1,6 +1,7 @@
 package service;
 
 import dao.EvaluationDao;
+import model.Goods;
 import model.Page;
 import model.Evaluation;
 import model.User;
@@ -49,5 +50,14 @@ public class EvaluationService {
             e.printStackTrace();
         }
         return ee;
+    }
+    public List<Evaluation> selectEvaluationList(int gid) {
+        List<Evaluation> list = null;
+        try {
+            list = eDao.selectEvaluationList(gid);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 }
