@@ -44,5 +44,9 @@ public class CartDao {
         String sql = "delete from cart where goodid = ?";
         r.update(sql,goodid);
     }
-
+    public void deleteUserId(int userid) throws SQLException {
+        QueryRunner r = new QueryRunner(DataSourceUtils.getDataSource());
+        String sql = "delete from cart where userid = ?";
+        r.update(sql,userid);
+    }
 }
