@@ -1,7 +1,9 @@
 package servlet;
 
+import model.Money;
 import model.User;
 import org.apache.commons.beanutils.BeanUtils;
+import service.MoneyService;
 import service.UserService;
 
 import javax.servlet.ServletException;
@@ -12,9 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
-@WebServlet(name = "user_register",urlPatterns = "/user_rigister")
+@WebServlet(name = "user_register", urlPatterns = "/user_rigister")
 public class UserRegisterServlet extends HttpServlet {
     private UserService uService = new UserService();
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = new User();
         try {
@@ -26,10 +29,21 @@ public class UserRegisterServlet extends HttpServlet {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        if(uService.register(user)) {
+        if (uService.register(user)) {
             request.setAttribute("msg", "注册成功，请登录！");
+
+            UserService userService = new UserService();
+            //查询user的id
+            user = userService.selectByUsername(user.getUsername());
+            MoneyService moneyService = new MoneyService();
+            Money money = new Money(user.getId(), 0);
+            //初始化余额
+            request.getSession().setAttribute("money", money);
+            //将余额存入数据库
+            moneyService.insert(money);
+
             request.getRequestDispatcher("user_login.jsp").forward(request, response);
-        }else {
+        } else {
             request.setAttribute("msg", "用户名或邮箱重复，请重新填写！");
             request.getRequestDispatcher("user_register.jsp").forward(request, response);
         }

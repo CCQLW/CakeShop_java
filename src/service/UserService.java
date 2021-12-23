@@ -107,4 +107,13 @@ public class UserService {
             return false;
         }
     }
+
+    public User selectByUsername(String username){
+        try {
+            return uDao.selectByUsername(username);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

@@ -19,7 +19,7 @@ public class UserLoginServlet extends HttpServlet {
         String ue = request.getParameter("ue");
         String password = request.getParameter("password");
         User user = uService.login(ue, password);
-
+        System.out.println(user);
 
 
         if(user==null) {
