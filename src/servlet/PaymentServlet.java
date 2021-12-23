@@ -1,21 +1,21 @@
-//package servlet;
-//
-//import model.Money;
-//import model.Order;
-//import model.User;
-//import service.MoneyService;
-//
-//import javax.servlet.ServletException;
-//import javax.servlet.annotation.WebServlet;
-//import javax.servlet.http.HttpServlet;
-//import javax.servlet.http.HttpServletRequest;
-//import javax.servlet.http.HttpServletResponse;
-//import java.io.IOException;
-//
-//@WebServlet(value = "/payment")
-//public class PaymentServlet extends HttpServlet {
-//    @Override
-//    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+package servlet;
+
+import model.Money;
+import model.Order;
+import model.User;
+import service.MoneyService;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+@WebServlet(value = "/payment")
+public class PaymentServlet extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        User user = (User) request.getSession().getAttribute("user");
 //        Order order = (Order) request.getSession().getAttribute("order");
 //        MoneyService moneyService = new MoneyService();
@@ -32,11 +32,11 @@
 //            //购物车
 ////            request.getRequestDispatcher("/goods_cart.jsp").forward(request, response);
 //        }
-//
-//    }
-//
-//    @Override
-//    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        doGet(req, resp);
-//    }
-//}
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doGet(req, resp);
+    }
+}

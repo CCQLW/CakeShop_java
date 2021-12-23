@@ -55,9 +55,14 @@ public class OrderConfirmServlet extends HttpServlet {
 
         order.setUser(user);
         oService.addOrder(order);
+        //移除在 Session 中的order
         request.getSession().removeAttribute("order");
 
 //        request.setAttribute("msg", "订单支付成功！");
+
+        //删除在 Session 中的money
+        request.getSession().removeAttribute("money");
+
         request.getRequestDispatcher("/order_success.jsp").forward(request, response);
     }
 
