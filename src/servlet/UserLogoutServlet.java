@@ -10,11 +10,13 @@ import java.io.IOException;
 @WebServlet(name = "user_logout",urlPatterns = "/user_logout")
 public class UserLogoutServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        doPost(request,response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getSession().removeAttribute("user");
+        //移除订单
+        request.getSession().removeAttribute("order");
         response.sendRedirect("/index");
     }
 }
