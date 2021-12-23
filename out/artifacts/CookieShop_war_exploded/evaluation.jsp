@@ -30,42 +30,35 @@
     <div class="container">
 
 
-        <h2>我的订单</h2>
-
-        <table>
-            <tr>
-                <td>要评价的商品</td>
-                <td>
-                    <div>
-                        <select class="form-control">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    输入评价
-                </td>
-                <td>
-                    <div>
-                        <textarea class="form-control" rows="3"></textarea>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="register-but text-center">
-                        <input type="submit" value="提交">
-                        <div class="clearfix"></div>
-                    </div>
-                </td>
-            </tr>
-        </table>
+        <h2>商品评价</h2>
+        <c:if test="${!empty failMsg }">
+            <div class="alert alert-danger">${failMsg }</div>
+        </c:if>
+        <form class="form-horizontal" action="/evaluation_add?uid=${user.id}" method="post">
+            <div class="form-group">
+                <label for="input_name" class="col-sm-1 control-label">商品编号</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="input_name" name="gid" value="${good.id}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-1 control-label">商品名称</label>
+                <div class="col-sm-6">
+                    <input type="text" value="${good.name}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="input_name" class="col-sm-1 control-label">评价内容</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="input_name" name="eval" value="${e.eval }"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-1 col-sm-10">
+                    <button type="submit">提交保存</button>
+                </div>
+            </div>
+        </form>
 
     </div>
 </div>

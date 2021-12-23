@@ -75,6 +75,11 @@ public class GoodsDao {
         String sql = "select g.id,g.name,g.cover,g.image1,g.image2,g.price,g.intro,g.stock,t.id typeid,t.name typename from goods g,type t where g.id = ? and g.type_id=t.id";
         return r.query(sql, new BeanHandler<Goods>(Goods.class),id);
     }
+    public Goods getGoodsByName(String name) throws SQLException {
+        QueryRunner r = new QueryRunner(DataSourceUtils.getDataSource());
+        String sql = "select g.id,g.name,g.cover,g.image1,g.image2,g.price,g.intro,g.stock,t.id typeid,t.name typename from goods g,type t where g.name = ? and g.type_id=t.id";
+        return r.query(sql, new BeanHandler<Goods>(Goods.class),name);
+    }
     public int getSearchCount(String keyword) throws SQLException {
         QueryRunner r = new QueryRunner(DataSourceUtils.getDataSource());
         String sql = "select count(*) from goods where name like ?";
