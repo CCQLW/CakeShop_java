@@ -48,10 +48,10 @@ public class OrderConfirmServlet extends HttpServlet {
 //            request.setAttribute("msg", "余额不足！");
             request.setAttribute("msg", "余额不足！  "+"订单支付失败！");
             order.setStatus(1);
-            //删除购物车的物品
-            CartService cartService=new CartService();
-            cartService.deleteUserId(user.getId());
         }
+        //删除购物车的物品
+        CartService cartService=new CartService();
+        cartService.deleteUserId(user.getId());
 
         order.setUser(user);
         oService.addOrder(order);
