@@ -29,7 +29,7 @@
 	<div class="cart-items">
 		<div class="container">
 			<h2>确认收货信息</h2>
-			<form class="form-horizontal" action="/payment" method="post" id="payform">
+			<form class="form-horizontal" action="/order_confirm" method="post" id="payform">
 				<div class="row">
 					<label class="control-label col-md-1">收货人</label>
 					<div class="col-md-6">
@@ -52,7 +52,10 @@
 				<br><hr><br>
 
 				<h2>选择支付方式</h2>
-				<h3>支付金额: ${order.total }</h3><br><br>
+				<h3>支付金额: ${order.total }</h3>
+				<h3>余额: ${money.balance }</h3>
+				<h3>用户姓名: ${user.username }</h3>
+				<br><br>
 
 
 				<div class="col-sm-6 col-md-4 col-lg-3 " >

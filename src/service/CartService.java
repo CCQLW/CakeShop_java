@@ -67,6 +67,13 @@ public class CartService {
             e.printStackTrace();
         }
     }
+    public void deleteUserId(int useId) {
+        try {
+            cartDao.deleteUserId(useId);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 //    public Cart getCartsById(int id) {
 //        Cart cart = null;
 //        try {

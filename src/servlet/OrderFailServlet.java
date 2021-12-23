@@ -19,22 +19,22 @@ public class OrderFailServlet extends HttpServlet {
     private OrderService oService = new OrderService();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Order o = (Order) request.getSession().getAttribute("order");
-        try {
-            BeanUtils.copyProperties(o, request.getParameterMap());
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        }
-        o.setDatetime(new Date());
-        o.setStatus(1);
-        o.setUser((User) request.getSession().getAttribute("user"));
-        oService.addOrder(o);
-        request.getSession().removeAttribute("order");
-
-        request.setAttribute("msg", "订单支付失败！");
-        request.getRequestDispatcher("/order_success.jsp").forward(request, response);
+//        Order o = (Order) request.getSession().getAttribute("order");
+//        try {
+//            BeanUtils.copyProperties(o, request.getParameterMap());
+//        } catch (IllegalAccessException e) {
+//            e.printStackTrace();
+//        } catch (InvocationTargetException e) {
+//            e.printStackTrace();
+//        }
+//        o.setDatetime(new Date());
+//        o.setStatus(1);
+//        o.setUser((User) request.getSession().getAttribute("user"));
+//        oService.addOrder(o);
+//        request.getSession().removeAttribute("order");
+//
+//        request.setAttribute("msg", "订单支付失败！");
+//        request.getRequestDispatcher("/order_success.jsp").forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

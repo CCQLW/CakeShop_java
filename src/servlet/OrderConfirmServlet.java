@@ -2,6 +2,8 @@ package servlet;
 
 import model.*;
 import org.apache.commons.beanutils.BeanUtils;
+import service.CartService;
+import service.MoneyService;
 import service.OrderService;
 
 import javax.servlet.ServletException;
@@ -12,14 +14,19 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
+
 //付款成功之后的界面
-@WebServlet(name = "order_confirm",urlPatterns = "/order_confirm")
+@WebServlet(name = "order_confirm", urlPatterns = "/order_confirm")
 public class OrderConfirmServlet extends HttpServlet {
     private OrderService oService = new OrderService();
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Order o = (Order) request.getSession().getAttribute("order");
+        Order order = (Order) request.getSession().getAttribute("order");
+        User user = (User) request.getSession().getAttribute("user");
+        MoneyService moneyService = new MoneyService();
+        Money money = moneyService.getMoneyByUserId(user.getId());
         try {
-            BeanUtils.copyProperties(o, request.getParameterMap());
+            BeanUtils.copyProperties(order, request.getParameterMap());
         } catch (IllegalAccessException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -27,17 +34,39 @@ public class OrderConfirmServlet extends HttpServlet {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        o.setDatetime(new Date());
-        o.setStatus(2);
-        o.setUser((User) request.getSession().getAttribute("user"));
-        oService.addOrder(o);
+        order.setDatetime(new Date());
+//        boolean isfail = false;
+        if (money.getBalance() >= order.getTotal()) {
+            //显示已付款
+            request.setAttribute("msg", "订单支付成功！");
+            money.setBalance(money.getBalance() - order.getTotal());
+            moneyService.update(money);
+            order.setStatus(2);
+        }else{
+//            isfail=true;
+            //显示未付款
+//            request.setAttribute("msg", "余额不足！");
+            request.setAttribute("msg", "余额不足！  "+"订单支付失败！");
+            order.setStatus(1);
+            //删除购物车的物品
+            CartService cartService=new CartService();
+            cartService.deleteUserId(user.getId());
+        }
+
+        order.setUser(user);
+        oService.addOrder(order);
+        //移除在 Session 中的order
         request.getSession().removeAttribute("order");
 
-        request.setAttribute("msg", "订单支付成功！");
+//        request.setAttribute("msg", "订单支付成功！");
+
+        //删除在 Session 中的money
+        request.getSession().removeAttribute("money");
+
         request.getRequestDispatcher("/order_success.jsp").forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        doPost(request,response);
     }
 }
