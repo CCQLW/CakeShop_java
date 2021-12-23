@@ -113,6 +113,17 @@ public class GoodsService {
         return g;
     }
 
+    public Goods getGoodsByName(String name){
+        Goods g=null;
+        try {
+            g=gDao.getGoodsByName(name);
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return g;
+    }
+
     public Page getSearchGoodsPage(String keyword, int pageNumber) {
         Page p = new Page();
         p.setPageNumber(pageNumber);
