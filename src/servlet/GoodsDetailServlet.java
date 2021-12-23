@@ -26,6 +26,7 @@ public class GoodsDetailServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         Goods g = gService.getGoodsById(id);
         List<Evaluation> eval=eService.selectEvaluationList(id);
+        System.out.println(id);
         request.setAttribute("g", g);
         request.setAttribute("elist",eval);
         request.getRequestDispatcher("/goods_detail.jsp").forward(request, response);

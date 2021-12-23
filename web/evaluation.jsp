@@ -38,13 +38,13 @@
             <div class="form-group">
                 <label for="input_name" class="col-sm-1 control-label">商品编号</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" id="input_name" name="gid" value="${good.id}"/>
+                    <input  type="text" class="form-control" id="input_name" name="gid" value="${good.id}" readonly />
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-1 control-label">商品名称</label>
                 <div class="col-sm-6">
-                    <input type="text" value="${good.name}"/>
+                    <input disabled="disabled" type="text" class="form-control" value="${good.name}" readonly />
                 </div>
             </div>
             <div class="form-group">

@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Date;
 import java.util.List;
 
 @WebServlet(name = "evaluation_add",urlPatterns = "/evaluation_add")
@@ -41,6 +42,7 @@ public class EvaluationAddServlet extends HttpServlet{
         List<Order> list = oService.selectAll(u.getId());
         eval.setUid(Integer.parseInt(request.getParameter("uid")));
         eval.setUname(u.getName());
+        eval.setDate(new Date());
         if(EService.addEval(eval)) {
             request.setAttribute("msg", "评价成功！");
             request.setAttribute("orderList", list);

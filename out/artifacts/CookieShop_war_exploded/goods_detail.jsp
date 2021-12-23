@@ -79,6 +79,7 @@
                         <c:forEach items="${elist}" var="elist">
                             <option>${elist.eval}</option>
                             <option>----${elist.uname}</option>
+                            <option>${elist.date}</option>
                         </c:forEach>
                     </select>
                 </p>
