@@ -80,6 +80,7 @@
                             <option>${elist.eval}</option>
                             <option>----${elist.uname}</option>
                             <option>${elist.date}</option>
+                            <option>-----------------------</option>
                         </c:forEach>
                     </select>
                 </p>

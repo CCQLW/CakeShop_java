@@ -6,12 +6,12 @@
 <html>
 <head>
 <title>订单列表</title>
-<link rel="stylesheet" href="css/bootstrap.css"/> 
+<link rel="stylesheet" href="css/bootstrap.css"/>
 </head>
 <body>
 <div class="container-fluid">
 
-	
+
 
 
 
@@ -21,15 +21,33 @@
 	<br>
 
 	<ul role="tablist" class="nav nav-tabs">
-		<li <c:if test="${status==0 }">class="active"</c:if> role="presentation"><a href="/admin/order_list">全部订单</a></li>
+		<li <c:if test="${status==0 }">class="active"</c:if> role="presentation"><a href="/admin/order_list?status=0">全部订单</a></li>
 		<li <c:if test="${status==1 }">class="active"</c:if> role="presentation"><a href="/admin/order_list?status=1">未付款</a></li>
 		<li <c:if test="${status==2 }">class="active"</c:if> role="presentation"><a href="/admin/order_list?status=2">已付款</a></li>
 		<li <c:if test="${status==3 }">class="active"</c:if> role="presentation"><a href="/admin/order_list?status=3">配送中</a></li>
 		<li <c:if test="${status==4 }">class="active"</c:if> role="presentation"><a href="/admin/order_list?status=4">已完成</a></li>
+		<li <c:if test="${status==5 }">class="active"</c:if> role="presentation">
+			<form class="form-horizontal" action="/admin/order_list?status=5">
+				<div class="form-group">
+					<div class="col-sm-6">
+						<select class="form-control" name="type">
+							<option>商品名称</option>
+							<option>收货人</option>
+							<option>下单人</option>
+						</select>
+						<input type="text" class="form-control" name="content"/>
+					</div>
+					<div class="col-sm-6">
+						<button type="submit" >查询</button>
+<%--						<a href="/admin/order_list?status=5">查询</a>--%>
+					</div>
+				</div>
+			</form>
+		</li>
 	</ul>
 
 	<br>
-	
+
 	<table class="table table-bordered table-hover">
 
 	<tr>
@@ -88,15 +106,26 @@
 				</td>
 			</tr>
 		</c:forEach>
-	
-     
+
+
 </table>
 
 <br>
-	<jsp:include page="/page.jsp">
-		<jsp:param value="/admin/order_list" name="url"/>
-		<jsp:param value="&status=${status}" name="param"/>
-	</jsp:include>
+	<c:if test="${status==5}">
+		<jsp:include page="/page.jsp">
+			<jsp:param value="/admin/order_list" name="url"/>
+			<jsp:param value="&Status=5" name="param"/>
+			<jsp:param value="&type=${type}" name="param"/>
+			<jsp:param value="&content=${content}" name="param"/>
+		</jsp:include>
+	</c:if>
+	<c:if test="${status!=5}">
+		<jsp:include page="/page.jsp">
+			<jsp:param value="/admin/order_list" name="url"/>
+			<jsp:param value="&status=${status}" name="param"/>
+		</jsp:include>
+	</c:if>
+
 <br>
 </div>
 </body>

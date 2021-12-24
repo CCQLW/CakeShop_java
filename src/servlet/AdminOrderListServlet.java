@@ -34,19 +34,62 @@ public class AdminOrderListServlet extends HttpServlet {
         }
         if(pageNumber<=0)
             pageNumber=1;
-        Page p = oService.getOrderPage(status,pageNumber);
-        if(p.getTotalPage()==0)
-        {
-            p.setTotalPage(1);
-            p.setPageNumber(1);
+        Page p=null;
+        String type=null;
+        String content=null;
+        if(request.getParameter("type") != null) {
+            type=request.getParameter("type");
         }
-        else {
-            if(pageNumber>=p.getTotalPage()+1)
+        if(request.getParameter("content") != null) {
+            content=request.getParameter("content");
+        }
+        if(content!=null){
+            status=5;
+            if(type.equals("商品名称")) {
+                p = oService.getOrderPageByGname(content, pageNumber);
+            }
+            else if(type.equals("收货人")){
+                p = oService.getOrderPageByName(content, pageNumber);
+            }
+            else {
+                p = oService.getOrderPageByUname(content, pageNumber);
+            }
+            if(p.getTotalPage()==0)
             {
-                p = oService.getOrderPage(status,pageNumber);
+                p.setTotalPage(1);
+                p.setPageNumber(1);
+            }
+            else {
+                if(pageNumber>=p.getTotalPage()+1)
+                {
+                    if(type.equals("商品名称")) {
+                        p = oService.getOrderPageByGname(content, pageNumber);
+                    }
+                    else if(type.equals("收货人")){
+                        p = oService.getOrderPageByName(content, pageNumber);
+                    }
+                    else {
+                        p = oService.getOrderPageByUname(content, pageNumber);
+                    }
+                }
             }
         }
-
+        else{
+            p = oService.getOrderPage(status,pageNumber);
+            if(p.getTotalPage()==0)
+            {
+                p.setTotalPage(1);
+                p.setPageNumber(1);
+            }
+            else {
+                if(pageNumber>=p.getTotalPage()+1)
+                {
+                    p = oService.getOrderPage(status,pageNumber);
+                }
+            }
+        }
+        request.setAttribute("type", type);
+        request.setAttribute("content", content);
         request.setAttribute("p", p);
         request.getRequestDispatcher("/admin/order_list.jsp").forward(request, response);
     }

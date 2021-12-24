@@ -44,7 +44,7 @@
             <div class="form-group">
                 <label class="col-sm-1 control-label">商品名称</label>
                 <div class="col-sm-6">
-                    <input disabled="disabled" type="text" class="form-control" value="${good.name}" readonly />
+                    <input type="text" class="form-control" value="${good.name}" readonly />
                 </div>
             </div>
             <div class="form-group">

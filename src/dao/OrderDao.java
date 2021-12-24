@@ -49,6 +49,24 @@ public class OrderDao {
             return r.query(sql, new ScalarHandler<Long>(),status).intValue();
         }
     }
+    public int getOrderCountByGname(String name) throws SQLException {
+        QueryRunner r = new QueryRunner(DataSourceUtils.getDataSource());
+        String sql = "";
+        sql="select count(*) from `order` o,`orderitem` oi,`goods` g where o.id=oi.order_id and oi.goods_id = g.id and g.name=?";
+        return r.query(sql, new ScalarHandler<Long>(),name).intValue();
+    }
+    public int getOrderCountByName(String name) throws SQLException {
+        QueryRunner r = new QueryRunner(DataSourceUtils.getDataSource());
+        String sql = "";
+        sql="select count(*) from `order` o where o.name=?";
+        return r.query(sql, new ScalarHandler<Long>(),name).intValue();
+    }
+    public int getOrderCountByUname(String name) throws SQLException {
+        QueryRunner r = new QueryRunner(DataSourceUtils.getDataSource());
+        String sql = "";
+        sql="select count(*) from `order` o,`user` u where o.user_id=u.id and u.username=?";
+        return r.query(sql, new ScalarHandler<Long>(),name).intValue();
+    }
     public List<Order> selectOrderList(int status, int pageNumber, int pageSize) throws SQLException {
         QueryRunner r = new QueryRunner(DataSourceUtils.getDataSource());
         if(status==0) {
@@ -58,6 +76,21 @@ public class OrderDao {
             String sql = "select o.id,o.total,o.amount,o.status,o.paytype,o.name,o.phone,o.address,o.datetime,u.username from `order` o,user u where o.user_id=u.id and o.status=? order by o.datetime desc limit ?,?";
             return r.query(sql, new BeanListHandler<Order>(Order.class),status, (pageNumber-1)*pageSize,pageSize );
         }
+    }
+    public List<Order> selectOrderListByGname(String name, int pageNumber, int pageSize) throws SQLException {
+        QueryRunner r = new QueryRunner(DataSourceUtils.getDataSource());
+        String sql = "select o.id,o.total,o.amount,o.status,o.paytype,o.name,o.phone,o.address,o.datetime,u.username from `order` o,user u,`orderitem` oi,`goods` g where o.user_id=u.id and o.id=oi.order_id and oi.goods_id=g.id and g.name=? order by o.datetime desc limit ?,?";
+        return r.query(sql, new BeanListHandler<Order>(Order.class),name, (pageNumber-1)*pageSize,pageSize );
+    }
+    public List<Order> selectOrderListByName(String name, int pageNumber, int pageSize) throws SQLException {
+        QueryRunner r = new QueryRunner(DataSourceUtils.getDataSource());
+        String sql = "select o.id,o.total,o.amount,o.status,o.paytype,o.name,o.phone,o.address,o.datetime,u.username from `order` o,user u where o.user_id=u.id and o.name=? order by o.datetime desc limit ?,?";
+        return r.query(sql, new BeanListHandler<Order>(Order.class),name, (pageNumber-1)*pageSize,pageSize );
+    }
+    public List<Order> selectOrderListByUname(String name, int pageNumber, int pageSize) throws SQLException {
+        QueryRunner r = new QueryRunner(DataSourceUtils.getDataSource());
+        String sql = "select o.id,o.total,o.amount,o.status,o.paytype,o.name,o.phone,o.address,o.datetime,u.username from `order` o,user u where o.user_id=u.id and u.username=? order by o.datetime desc limit ?,?";
+        return r.query(sql, new BeanListHandler<Order>(Order.class),name, (pageNumber-1)*pageSize,pageSize );
     }
     public void updateStatus(int id,int status) throws SQLException {
         QueryRunner r = new QueryRunner(DataSourceUtils.getDataSource());
